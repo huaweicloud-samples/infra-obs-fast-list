@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "obsfast"
+version = "1.0.0"
+description = "对象存储桶的并发盘点与差异比对工具"
+requires-python = ">=3.9"
+license = { text = "MIT-0" }
+keywords = ["object-storage", "obs", "inventory", "parallel-listing"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: System :: Systems Administration",
+    "Topic :: Utilities",
+]
+dependencies = []
+
+[project.optional-dependencies]
+# 导出对象元数据所需的 Parquet 能力；未安装时工具仍可正常盘点与导出前缀分布
+parquet = ["pyarrow>=14.0"]
+
+[project.scripts]
+obsfast = "obsfast.cli:main"
+
+[tool.setuptools]
+package-dir = { "" = "." }
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["obsfast*"]
