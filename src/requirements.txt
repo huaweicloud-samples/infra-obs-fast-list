@@ -1,0 +1,12 @@
+# obsfast 运行依赖
+#
+# 工具本体仅依赖 Python 标准库：请求签名（hmac/hashlib）、HTTPS 通信
+# （urllib/http.client）、XML/JSON 解析（xml.etree/json）、并发调度
+# （threading/concurrent.futures）均由标准库提供。
+#
+# 唯一的第三方依赖用于导出对象元数据（Parquet 格式）。未安装时工具仍可完成
+# 盘点并产出前缀分布文件，仅在导出元数据时给出提示并跳过。
+pyarrow>=14.0
+
+# 说明：对象存储桶清单的配置与报告解析走服务端 REST 接口，官方 Python SDK
+# 未覆盖该能力，因此未引入任何对象存储 SDK 依赖。
